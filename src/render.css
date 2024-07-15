@@ -1,10 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("ms_sans_serif.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("ms_sans_serif_bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
 
 @layer base {
   html {
     background-image: url("./render.jpg");
     @apply bg-cover bg-no-repeat;
+  }
+
+  .synth-a {
+    transform: perspective(1000px) rotateX(75deg) scale(2);
+  }
+  .synth-b {
+    transform: perspective(1000px) rotateX(-75deg) scale(2);
+  }
+
+  .ui-outset {
+    background: silver;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff,
+      inset -2px -2px grey, inset 2px 2px #dfdfdf;
+  }
+
+  .ui-inset {
+    box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px grey;
+  }
+
+  .ui-outset-semi {
+    box-shadow: inset -1px -1px #0a0a0a88, inset 1px 1px #ffffff88,
+      inset -1px -1px #88888888, inset 1px 1px #dfdfdf88;
+  }
+}
+
+.glitchy {
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  2%,
+  64% {
+    transform: translate(2px, 0) skew(0deg);
+  }
+  4%,
+  60% {
+    transform: translate(-2px, 0) skew(0deg);
+  }
+  62% {
+    transform: translate(0, 0) skew(5deg);
+  }
+}
+
+.glitchy:before,
+.glitchy:after {
+  content: attr(title);
+  position: absolute;
+  left: 0;
+}
+
+.glitchy:before {
+  animation: glitchTop 1s linear infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+
+@keyframes glitchTop {
+  2%,
+  64% {
+    transform: translate(2px, -2px);
+  }
+  4%,
+  60% {
+    transform: translate(-2px, 2px);
+  }
+  62% {
+    transform: translate(13px, -1px) skew(-13deg);
+  }
+}
+
+.glitchy:after {
+  animation: glitchBotom 1.5s linear infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitchBotom {
+  2%,
+  64% {
+    transform: translate(-2px, 0);
+  }
+  4%,
+  60% {
+    transform: translate(-2px, 0);
+  }
+  62% {
+    transform: translate(-22px, 5px) skew(21deg);
   }
 }
